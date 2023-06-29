@@ -1,0 +1,12 @@
+.cell {
+    background-color: red;
+    padding: 2vw;
+}
+
+#gameBoard {
+    display: grid;
+    height: 1vw;
+    width: 1vw;
+    gap: 1px;
+    grid-template-columns: repeat(3,1fr);
+}
