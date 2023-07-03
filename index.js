@@ -1,5 +1,8 @@
 const player = (name, sign) => {
-  return { name, sign };
+  const changeName = (newName) => {
+    name = newName;
+  };
+  return { name, changeName, sign };
 };
 
 const gameboard = ((
@@ -13,6 +16,7 @@ const gameboard = ((
   currentPlayer = player1;
   const makeMove = (board, index, cell) => {
     if (board[index] === null) {
+      console.log(player1, player2);
       board[index] = currentPlayer.sign;
       cell.innerText = currentPlayer.sign;
       const checkwin = (board, playerSign) => {
@@ -53,18 +57,24 @@ const gameboard = ((
 
 function populateUI(board) {
   document.getElementById("start").addEventListener("click", () => {
-    drawBoard(gameboard.makeBoard());
-  });
-  function drawBoard(board) {
-    for (let index = 0; index < board.length; index++) {
-      const cell = document.createElement("button");
-      cell.className = "cell";
-      cell.addEventListener("click", () => {
-        gameboard.makeMove(board, index, cell);
-      });
-      document.getElementById("gameBoard").appendChild(cell);
+    playerNames = document.getElementsByClassName("names");
+    console.log(playerNames[0].value, playerNames[1].value);
+    if (playerNames[0].value === "" || playerNames[1].value === "") {
+      alert("Please enter both player names");
+      return;
     }
-  }
+    function drawBoard(board) {
+      for (let index = 0; index < board.length; index++) {
+        const cell = document.createElement("button");
+        cell.className = "cell";
+        cell.addEventListener("click", () => {
+          gameboard.makeMove(board, index, cell);
+        });
+        document.getElementById("gameBoard").appendChild(cell);
+      }
+    }
+    drawBoard(board);
+  });
 }
 
-populateUI();
+populateUI(gameboard.makeBoard());
