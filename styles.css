@@ -3,10 +3,11 @@ main {
     flex-direction: column;
     align-items: center;
     gap: 2px;
+    background-color: black;
 }
 
 .cell {
-    background-color: red;
+    background-color: grey;
     height: 10vw;
     width: 10vw;
     padding: 0;
@@ -17,4 +18,8 @@ main {
     display: grid;
     gap: 1px;
     grid-template-columns: repeat(3,1fr);
+}
+
+html {
+    background-color: black;
 }
